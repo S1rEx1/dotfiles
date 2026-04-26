@@ -5392,3 +5392,74 @@ git push -u origin main
 ls -a
 rm -rf .git
 git init
+git add .
+git commit -m "first commit"
+git branch -M main
+git remote add origin git@github.com:S1rEx1/dotfiles.git
+git push -u origin main
+ls -a
+n .stow-local-ignore
+stow .
+ls
+ls .config/
+mv ~/.config/mango/ .config/
+t
+stow .
+cd .config
+ls
+n starship.toml
+tree | grep *.json
+cd ..
+ls
+tree
+ls
+ls -a
+cd .dart-tool/
+ls
+cd ..
+ls -a
+cd .poshthemes/
+ls
+n gruvbox.omp.json
+n capr4n.omp.json
+oh-my-posh
+oh-my-posh init nu --config $"($env.HOME)/.config/oh-my-posh/config.json"
+ls
+exit
+cd ..
+cd .config/oh-my-posh/
+ls
+n config.json
+mv ~/.config/oh-my-posh/ .config/
+exit
+ls
+stow .
+exit
+ls
+oh-my-posh init nu --config $"($env.HOME)/.config/oh-my-posh/config.json"
+ls
+ls -a
+mv ~/.poshthemes/ .
+ls
+cd ..
+ls
+cd .dotfiles/
+ls
+mv ~/.poshthemes/ 
+mv ~/.poshthemes/ /
+ls -a
+stow .
+exit
+ls
+oh-my-posh init nu --config $"($env.HOME)/.config/oh-my-posh/config.json"
+oh-my-posh init nu --config $"($env.HOME)/.poshthemes/gruvbox.omp.json"
+oh-my-posh init nu --config ~/.poshthemes/gruvbox.omp.json
+ды
+ls
+exit
+oh-my-posh init nu --config ~/.config/oh-my-posh/config.json
+ls
+exit
+exit
+ls -l ~/.config/oh-my-posh/
+git status
