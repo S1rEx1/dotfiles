@@ -5463,3 +5463,12 @@ exit
 exit
 ls -l ~/.config/oh-my-posh/
 git status
+git add .
+git commit -m "second commit"
+ls -a
+n .gitignore
+ls
+git status
+rm .gitignore
+n .gitignore
+git status
