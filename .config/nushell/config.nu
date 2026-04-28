@@ -32,6 +32,8 @@ alias nano = nvim
 alias pi = pip install --break-system-packages
 alias pir = pip install -r requirements.txt --break-system-packages
 
+oh-my-posh init nu --config ~/.config/oh-my-posh/config.json
+
 alias o = bat
 $env.config = {
   show_banner: false
