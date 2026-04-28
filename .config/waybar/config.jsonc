@@ -1,0 +1,62 @@
+{
+  "layer": "top",
+  "position": "top",
+  "height": 30,
+  "spacing": 4,
+
+  "modules-left": [
+    "dwl/tags"
+  ],
+
+  "modules-center": [],
+
+  "modules-right": [
+    "custom/sep",
+    "cpu",
+    "custom/sep",
+    "memory",
+    "custom/sep",
+    "clock",
+    "custom/sep"
+  ],
+
+  "dwl/tags": {
+    "tag-labels": [
+  "",
+  "",
+  "",
+  "",
+  "󰏫",
+  "",
+  " ",
+  " ",
+  " "
+]
+  },
+
+  "clock": {
+    "format": "{:%H:%M}",
+    "format-alt": "{:%Y-%m-%d}",
+    "interval": 60,
+    "tooltip": false
+  },
+
+  "cpu": {
+    "format": "CPU: {usage}%",
+    "interval": 5,
+    "tooltip": false
+  },
+
+  "memory": {
+    "format": "Mem: {used}GiB",
+    "interval": 5,
+    "tooltip": false
+  },
+
+  "custom/sep": {
+    "format": "|",
+    "tooltip": false
+  },
+
+  "reload_style_on_change": true
+}
