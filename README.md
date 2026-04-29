@@ -3,7 +3,7 @@
 
 ## To install my dots
 1) wait till i finish uploading 'em
-2)
+2) 67
 ```bash
     git clone https://github.com/S1rEx1/dotfiles/ ~/.dotfiles/
     cd ~/.dotfiles
