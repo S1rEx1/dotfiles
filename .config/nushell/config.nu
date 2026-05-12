@@ -1,3 +1,5 @@
+# alias chx = cd ~/backup/crosshair/;cargo run;cd
+
 #=============#
 # AUR ALIASES #
 #=============#
