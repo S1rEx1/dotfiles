@@ -1130,6 +1130,7 @@ tnewline(int first_col)
 	tmoveto(first_col ? 0 : term.c.x, y);
 }
 
+
 void
 csiparse(void)
 {

@@ -7,7 +7,7 @@ local options = {
 
   -- Line numbering
   number = true, -- Show line numbers
-  relativenumber = true, -- Show relative line numbers
+  relativenumber = false, -- Show relative line numbers
 
   -- Backup and swap files
   swapfile = false, -- Disable swap file

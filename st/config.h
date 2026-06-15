@@ -1,122 +1,97 @@
-static char *font = "Iosevka:pixelsize=23";
+static char *font = "Iosevka:pixelsize=22:antialias=true:autohint=true";
 static int borderpx = 0;
 
-/*
- * What program is execed by st depends of these precedence rules:
- * 1: program passed with -e
- * 2: scroll and/or utmp
- * 3: SHELL environment variable
- * 4: value of shell in /etc/passwd
- * 5: value of shell in config.h
- */
 static char *shell = "/bin/sh";
 char *utmp = NULL;
-/* scroll program: to enable use a string like "scroll" */
 char *scroll = NULL;
 char *stty_args = "stty raw pass8 nl -echo -iexten -cstopb 38400";
 
-/* identification sequence returned in DA and DECID */
 char *vtiden = "\033[?6c";
 
-/* Kerning / character bounding-box multipliers */
 static float cwscale = 1.0;
 static float chscale = 1.0;
 
-/*
- * word delimiter string
- *
- * More advanced example: L" `'\"()[]{}"
- */
 wchar_t *worddelimiters = L" ";
 
-/* selection timeouts (in milliseconds) */
 static unsigned int doubleclicktimeout = 300;
 static unsigned int tripleclicktimeout = 600;
 
-/* alt screens */
 int allowaltscreen = 1;
 
-/* allow certain non-interactive (insecure) window operations such as:
-   setting the clipboard text */
 int allowwindowops = 0;
 
-/*
- * draw latency range in ms - from new content/keypress/etc until drawing.
- * within this range, st draws when content stops arriving (idle). mostly it's
- * near minlatency, but it waits longer for slow updates to avoid partial draw.
- * low minlatency will tear/flicker more, as it can "detect" idle too early.
- */
 static double minlatency = 2;
 static double maxlatency = 33;
 
-/*
- * blinking timeout (set to 0 to disable blinking) for the terminal blinking
- * attribute.
- */
 static unsigned int blinktimeout = 800;
 
-/*
- * thickness of underline and bar cursors
- */
 static unsigned int cursorthickness = 2;
 
-/*
- * bell volume. It must be a value between -100 and 100. Use 0 for disabling
- * it
- */
 static int bellvolume = 0;
 
-/* default TERM value */
 char *termname = "st-256color";
 
-/*
- * spaces per tab
- *
- * When you are changing this value, don't forget to adapt the »it« value in
- * the st.info and appropriately install the st.info in the environment where
- * you use this st version.
- *
- *	it#$tabspaces,
- *
- * Secondly make sure your kernel is not expanding tabs. When running `stty
- * -a` »tab0« should appear. You can tell the terminal to not expand tabs by
- *  running following command:
- *
- *	stty tabs
- */
 unsigned int tabspaces = 8;
 
-/* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
-	/* 8 normal colors - Gruvbox Dark */
-	"#282828",  /* 0: black   */
-	"#cc241d",  /* 1: red     */
-	"#98971a",  /* 2: green   */
-	"#d79921",  /* 3: yellow  */
-	"#458588",  /* 4: blue    */
-	"#b16286",  /* 5: magenta */
-	"#689d6a",  /* 6: cyan    */
-	"#a89984",  /* 7: white   */
+	/* 8 normal colors */
+	"#000000",  /* 0: black   */
+	"#f16e65",  /* 1: red     */
+	"#7ec97e",  /* 2: green   */
+	"#ef934d",  /* 3: yellow  */
+	"#71b4d6",  /* 4: blue    */
+	"#e28dc6",  /* 5: magenta */
+	"#7ec9a3",  /* 6: cyan    */
+	"#d9cdb5",  /* 7: white   */
 
-	/* 8 bright colors - Gruvbox Dark */
-	"#928374",  /* 8: bright black   */
-	"#fb4934",  /* 9: bright red     */
-	"#b8bb26",  /* 10: bright green  */
-	"#fabd2f",  /* 11: bright yellow */
-	"#83a598",  /* 12: bright blue   */
-	"#d3869b",  /* 13: bright magenta*/
-	"#8ec07c",  /* 14: bright cyan   */
-	"#ebdbb2",  /* 15: bright white  */
+	/* 8 bright colors */
+	"#000000",  /* 8: bright black   */
+	"#f16e65",  /* 9: bright red     */
+	"#7ec97e",  /* 10: bright green  */
+	"#ef934d",  /* 11: bright yellow */
+	"#71b4d6",  /* 12: bright blue   */
+	"#e28dc6",  /* 13: bright magenta*/
+	"#7ec9a3",  /* 14: bright cyan   */
+	"#f4decd",  /* 15: bright white  */
 
 	[255] = 0,
 
 	/* extra colors */
-	"#ebdbb2",  /* 256: cursor color (fg) */
-	"#282828",  /* 257: reverse cursor (bg) */
-	"#ebdbb2",  /* 258: default foreground */
-	"#282828",  /* 259: default background */
+	"#d9cdb5",  /* 256: cursor color */
+	"#585f5d",  /* 257: reverse cursor */
+	"#f4decd",  /* 258: default foreground */
+	"#0f0f0f",  /* 259: default background */
 };
-
+// static const char *colorname[] = {
+// 	/* 8 normal colors - Gruvbox Dark */
+// 	"#282828",  /* 0: black   */
+// 	"#cc241d",  /* 1: red     */
+// 	"#98971a",  /* 2: green   */
+// 	"#d79921",  /* 3: yellow  */
+// 	"#458588",  /* 4: blue    */
+// 	"#b16286",  /* 5: magenta */
+// 	"#689d6a",  /* 6: cyan    */
+// 	"#a89984",  /* 7: white   */
+//
+// 	/* 8 bright colors - Gruvbox Dark */
+// 	"#928374",  /* 8: bright black   */
+// 	"#fb4934",  /* 9: bright red     */
+// 	"#b8bb26",  /* 10: bright green  */
+// 	"#fabd2f",  /* 11: bright yellow */
+// 	"#83a598",  /* 12: bright blue   */
+// 	"#d3869b",  /* 13: bright magenta*/
+// 	"#8ec07c",  /* 14: bright cyan   */
+// 	"#ebdbb2",  /* 15: bright white  */
+//
+// 	[255] = 0,
+//
+// 	/* extra colors */
+// 	"#ebdbb2",  /* 256: cursor color (fg) */
+// 	"#282828",  /* 257: reverse cursor (bg) */
+// 	"#ebdbb2",  /* 258: default foreground */
+// 	"#282828",  /* 259: default background */
+// };
+//
 
 
 unsigned int defaultfg = 258;

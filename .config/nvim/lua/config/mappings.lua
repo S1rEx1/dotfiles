@@ -1,4 +1,4 @@
-local noarrows = false
+local noarrows = true
 
 -- Leader keys
 vim.keymap.set('n', '<leader>l', '<cmd>Lazy home<CR>', { desc = 'Open Lazy main menu' })
